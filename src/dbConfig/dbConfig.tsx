@@ -24,3 +24,5 @@ async function dbConfig(){
         console.log(error)
     }
 }
+
+export default dbConfig;
