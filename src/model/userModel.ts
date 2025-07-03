@@ -43,7 +43,5 @@ const userSchema: Schema<UserType> = new Schema<UserType>({
 
 const User: Model<UserType>= mongoose.models?.User || mongoose.model<UserType>("User", userSchema)
 
-export default {
-    User
-}
+export default User
 
