@@ -1,9 +1,12 @@
+import dbConnect from "@/dbConfig/dbConfig";
 import User from "@/model/userModel";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken"
 import { NextRequest, NextResponse } from "next/server";
 
-export default async function POST(req: NextRequest){
+dbConnect(); // connectig to database or else it will give error!
+
+export async function POST(req: NextRequest){
         try {
 
             const reqBody = await req.json();
@@ -26,7 +29,7 @@ export default async function POST(req: NextRequest){
                 username: user.username,
                 email: user.email
             }
-            const token = jwt.sign(TokenData, process.env.JWT, { expiresIn: "1d"});
+            const token = await jwt.sign(TokenData, process.env.JWT, { expiresIn: "1d"});
 
             const response = NextResponse.json({
                 token: token,
